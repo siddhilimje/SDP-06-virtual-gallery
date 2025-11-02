@@ -1,0 +1,120 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #c6a8eb;
+  color: #f0b9ea;
+  line-height: 1.6;
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  color: rgb(243, 138, 249);
+  padding: 15px 30px;
+}
+
+header nav a {
+  color: rgb(243, 138, 249);
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+.login-btn {
+  background: rgb(243, 138, 249);
+  border: none;
+  padding: 8px 15px;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+/* Hero */
+.hero {
+  background: url('https://source.unsplash.com/1600x600/?art,gallery') no-repeat center center/cover;
+  text-align: center;
+  padding: 100px 20px;
+  color: rgb(29, 37, 36);
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.hero button {
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.hero .alt-btn {
+  background: transparent;
+  border: 2px solid rgb(179, 47, 231);
+  color: rgb(0, 0, 0);
+}
+
+/* Roles */
+.roles {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 50px;
+}
+
+.role-card {
+  background: rgb(255, 255, 255);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+
+/* Art Gallery Home Page */
+.art-gallery {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.art-piece {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: #1a1a1a;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  color: #f0b9ea;
+  width: 250px;
+}
+
+.art-piece img {
+  display: block;
+  margin: 0 auto 15px auto;
+  border-radius: 8px;
+}
+
+.art-piece h3, .art-piece p {
+  text-align: center;
+}
+
+/* Footer */
+footer {
+  background: #222;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}

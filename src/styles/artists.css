@@ -1,0 +1,20 @@
+.artists-page { padding: 24px 6vw; }
+.artists-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2.2rem; margin-top: 16px;
+}
+.artist-card {
+  background: #fff;
+  border-radius: 16px;
+  text-align: left;
+  box-shadow: 0 4px 20px #a23bcf10;
+  padding: 18px;
+  display: flex; gap: 18px; align-items: flex-start;
+}
+.artist-img { width: 105px; height: 105px; object-fit: cover; border-radius: 13px; }
+.artist-info { flex: 1; }
+.lifespan { color: #a082cd; font-size: 0.96rem; }
+@media (max-width: 768px) {
+  .artists-card { flex-direction: column; align-items: center; }
+}

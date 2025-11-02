@@ -1,0 +1,61 @@
+.purchase-page {
+  padding: 28px 4vw;
+}
+.purchase-page h1 {
+  text-align: center;
+  color: #a23bcf;
+  margin-bottom: 14px;
+  font-size: 2rem;
+}
+.purchase-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px,1fr));
+  gap: 2.2rem;
+  margin-top: 22px;
+}
+.purchase-card {
+  background: #fff;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 4px 22px #b23fcf17;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.purchase-img {
+  width: 97%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 11px;
+  margin-bottom: 7px;
+}
+.purchase-artist {
+  color: #ab5ee4;
+  font-weight: 600;
+}
+.purchase-price {
+  color: #8937cc;
+  font-weight: 700;
+  font-size: 1.12rem;
+  margin: 7px 0;
+}
+.purchase-btn {
+  background: #ae8afd;
+  color: #fff;
+  border: none;
+  border-radius: 18px;
+  padding: 8px 18px;
+  cursor: pointer;
+  font-size: 1.06rem;
+  font-weight: 600;
+  transition: background 0.12s;
+  margin-top: 6px;
+}
+.purchase-btn:disabled {
+  background: #d5c0fb;
+  cursor: not-allowed;
+}
+@media (max-width: 768px) {
+  .purchase-grid { grid-template-columns: 1fr !important; }
+}
