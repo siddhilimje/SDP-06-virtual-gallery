@@ -7,6 +7,7 @@ import Purchase from "./components/Purchase";
 import About from "./components/About";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import ArtworkManager from "./components/ArtworkManager";
 import "./styles/global.css";
 
 function App() {
@@ -28,3 +29,5 @@ function App() {
 }
 
 export default App;
+// ...
+<Route path="/manage-artworks" element={<ArtworkManager />} />

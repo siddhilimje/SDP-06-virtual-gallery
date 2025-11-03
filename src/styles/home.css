@@ -65,3 +65,21 @@
 @media (max-width: 768px) {
   .gallery-grid { grid-template-columns: 1fr !important; }
 }
+
+.know-more-link {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 6px 16px;
+  background: #a23bcf;
+  color: white;
+  text-decoration: none;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.know-more-link:hover {
+  background: #8a2eb0;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(162, 59, 207, 0.2);
+}
