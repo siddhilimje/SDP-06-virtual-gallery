@@ -1,5 +1,7 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
+import { useNavigate } from 'react-router-dom';
 import "../styles/artwork-manager.css";
+import { AuthContext } from "../context/AuthContext";
 
 function emptyArtwork() {
   return {
@@ -17,7 +19,12 @@ export default function ArtworkManager() {
   const [artworks, setArtworks] = useState([]);
   const [form, setForm] = useState(emptyArtwork());
   const [editingId, setEditingId] = useState(null);
+  const [errors, setErrors] = useState({});
+  const [success, setSuccess] = useState('');
   const fileRef = useRef();
+  const nav = useNavigate();
+  const { addFavorite, addToCart, favorites } = useContext(AuthContext);
+  const { isAuthenticated } = useContext(AuthContext);
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -28,8 +35,10 @@ export default function ArtworkManager() {
     if(!file) return;
     // Validate file type
     if(!["image/jpeg", "image/png", "image/gif"].includes(file.type)) {
-      alert("Only JPEG, PNG, or GIF accepted.");
+      setErrors(err => ({ ...err, image: 'Only JPEG, PNG, or GIF accepted.' }));
       return;
+    } else {
+      setErrors(err => ({ ...err, image: undefined }));
     }
     // Read as data URL for preview
     const reader = new FileReader();
@@ -41,10 +50,11 @@ export default function ArtworkManager() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    if(!form.title || !form.preview){
-      alert("Please provide an artwork title and image.");
-      return;
-    }
+    const newErrors = {};
+    if (!form.title || form.title.trim() === '') newErrors.title = 'Artwork title is required.';
+    if (!form.preview) newErrors.preview = 'Artwork image is required.';
+    setErrors(newErrors);
+    if (Object.keys(newErrors).length > 0) return;
     if(editingId) {
       setArtworks(arts =>
         arts.map(a =>
@@ -57,6 +67,9 @@ export default function ArtworkManager() {
     setForm(emptyArtwork());
     setEditingId(null);
     fileRef.current.value = null;
+    setSuccess(editingId ? 'Artwork updated successfully.' : 'Artwork uploaded successfully. Redirecting to home...');
+    // after success, if adding new artwork go to home
+    if (!editingId) setTimeout(()=> nav('/'), 900);
   }
 
   function handleEdit(id) {
@@ -90,6 +103,8 @@ export default function ArtworkManager() {
             ref={fileRef}
           />
         </label>
+        {errors.image && <div className="input-error">{errors.image}</div>}
+        {errors.preview && <div className="input-error">{errors.preview}</div>}
         {form.preview && (
           <div className="art-preview">
             <img src={form.preview} alt="Preview" />
@@ -106,6 +121,7 @@ export default function ArtworkManager() {
             required
           />
         </label>
+        {errors.title && <div className="input-error">{errors.title}</div>}
 
         <label>
           Description
@@ -148,6 +164,7 @@ export default function ArtworkManager() {
             </button>
           )}
         </div>
+        {success && <div className="form-success" style={{marginTop:12}}>{success}</div>}
       </form>
 
       <h2 style={{marginTop:32, marginBottom:12}}>Your Artworks</h2>
@@ -173,6 +190,8 @@ export default function ArtworkManager() {
             <div className="art-actions">
               <button onClick={() => handleEdit(art.id)}>Edit</button>
               <button onClick={() => handleDelete(art.id)} className="btn-secondary">Delete</button>
+              <button onClick={() => { if(!isAuthenticated) return nav('/login'); addFavorite(art); }}>♡ Favorite</button>
+              <button onClick={() => { if(!isAuthenticated) return nav('/login'); addToCart(art); }} className="btn-main">Add to Cart</button>
             </div>
           </div>
         ))}

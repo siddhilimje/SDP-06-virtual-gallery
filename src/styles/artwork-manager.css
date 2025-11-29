@@ -41,3 +41,23 @@
 @media (max-width: 600px){
   .manage-artworks-section { padding:11px 3px;}
 }
+
+/* Inline validation and success messages for artwork form */
+.input-error {
+  color: #b71c1c;
+  background: #fff6f6;
+  border: 1px solid #f5c6cb;
+  padding: 6px 8px;
+  border-radius: 8px;
+  font-size: 0.92rem;
+  margin-top: 6px;
+}
+.form-success {
+  color: #155724;
+  background: #e6f6ea;
+  border: 1px solid #c3e6cb;
+  padding: 8px 10px;
+  border-radius: 9px;
+  font-weight: 600;
+  margin-top: 8px;
+}

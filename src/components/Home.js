@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "../styles/home.css";
+import { AuthContext } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+
 
 const ARTWORKS = [
   {
@@ -96,6 +99,8 @@ const ARTWORKS = [
 
 export default function Home() {
   const [search, setSearch] = useState("");
+  const { addFavorite, addToCart, isAuthenticated } = useContext(AuthContext);
+  const nav = useNavigate();
 
   const filtered = ARTWORKS.filter(
     art =>
@@ -130,6 +135,16 @@ export default function Home() {
             >
               Know more
             </a>
+            <div style={{marginTop:8, display:'flex', gap:8}}>
+              <button className="btn-main" onClick={() => {
+                if(!isAuthenticated) return nav('/login');
+                addToCart({ id: art.id, title: art.title, preview: art.img });
+              }}>Add to Cart</button>
+              <button className="btn-main btn-secondary" onClick={() => {
+                if(!isAuthenticated) return nav('/login');
+                addFavorite({ id: art.id, title: art.title, preview: art.img });
+              }}>♡ Favorite</button>
+            </div>
           </div>
         ))}
       </div>
